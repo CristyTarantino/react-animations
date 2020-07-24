@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useRef} from 'react';
 import {CSSTransition} from 'react-transition-group';
 import styles from './Modal.module.css';
 
@@ -8,6 +8,7 @@ const animationDuration = {
 };
 
 const Modal = ({closed, show}) => {
+  const nodeRef = useRef(null);
   const [inProp, setInProp] = useState(show);
 
   useEffect(() => {
@@ -19,6 +20,7 @@ const Modal = ({closed, show}) => {
   }
 
   return <CSSTransition
+    nodeRef={nodeRef}
     in={inProp}
     timeout={animationDuration}
     unmountOnExit
@@ -30,6 +32,7 @@ const Modal = ({closed, show}) => {
       exitActive: styles.Modal___closed
     }}>
       <div
+        ref={nodeRef}
         className={styles.Modal}>
         <h1>A Modal</h1>
         <button className="Button" onClick={onCloseHandler}>Dismiss</button>
