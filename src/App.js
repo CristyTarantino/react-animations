@@ -19,7 +19,7 @@ function App() {
     <div className="App">
       <h1>React Animations</h1>
       <Modal closed={closeModal} show={modalIsOpen} />
-      <Backdrop show={modalIsOpen} />
+      { modalIsOpen && <Backdrop show />}
       <button className="Button" onClick={showModal}>Open Modal</button>
       <h3>Animating Lists</h3>
       <List />
